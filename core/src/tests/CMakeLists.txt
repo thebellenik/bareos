@@ -57,6 +57,7 @@ add_definitions(-DCERTDIR=\"${PROJECT_SOURCE_DIR}/../regress/configs/BASE/tls\")
 add_definitions(-DPROJECT_SOURCE_DIR=\"${PROJECT_SOURCE_DIR}\")
 
 ####### test_lib ###############################
+IF(NOT HAVE_WIN32)
 add_executable(test_lib
     alist_test.cc
     bareos_test_sockets.cc
@@ -123,6 +124,8 @@ target_link_libraries(test_dir_plugins
     )
 
   gtest_discover_tests(test_dir_plugins TEST_PREFIX gtest:)
+ENDIF()
+
 
 ####### test_output_formatter ###############################
 add_executable(test_output_formatter
@@ -135,6 +138,10 @@ target_link_libraries(test_output_formatter
    ${GTEST_MAIN_LIBRARIES}
    )
  gtest_discover_tests(test_output_formatter TEST_PREFIX gtest:)
+
+
+IF(NOT HAVE_WIN32)
+
 
 ####### test_bsock ###############################
 add_executable(test_bsock
@@ -164,8 +171,8 @@ add_executable(test_ndmp_address_translate
   ndmp_address_translate_test.cc
   ../dird/ndmp_slot2elemaddr.cc
 )
-
 target_link_libraries(test_ndmp_address_translate ${LINK_LIBRARIES})
 
 gtest_discover_tests(test_ndmp_address_translate TEST_PREFIX gtest:)
 
+endif()

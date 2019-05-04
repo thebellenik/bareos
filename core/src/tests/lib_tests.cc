@@ -25,6 +25,7 @@
 #include "lib/bnet.h"
 #include "lib/bstringlist.h"
 
+
 TEST(BStringList, ConstructorsTest)
 {
   BStringList list1;

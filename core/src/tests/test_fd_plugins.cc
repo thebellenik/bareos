@@ -33,6 +33,9 @@
  */
 #include "gtest/gtest.h"
 
+#include <windows.h>
+
+
 #include "include/bareos.h"
 #include "filed/filed.h"
 #include "filed/filed_globals.h"

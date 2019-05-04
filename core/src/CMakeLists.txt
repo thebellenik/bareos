@@ -19,7 +19,7 @@
 
 IF(NOT client-only)
    add_subdirectory(tools)
-   IF(NOT HAVE_WIN32 AND GTEST_FOUND)
+   IF(GTEST_FOUND)
       add_subdirectory(tests)
    ENDIF()
    add_subdirectory(cats)

@@ -56,6 +56,7 @@
  * _declspec to __declspec
  */
 #define _declspec __declspec
+#include <windows.h>
 #endif
 
 typedef struct _REPARSE_DATA_BUFFER {
