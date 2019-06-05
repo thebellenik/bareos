@@ -953,7 +953,7 @@ void BareosSocketTCP::destroy()
     errmsg = nullptr;
   }
   if (who_) { /* duplicated */
-    free(who_);
+    free(const_cast<char*>(who_));
     who_ = nullptr;
   }
   if (host_) { /* duplicated */

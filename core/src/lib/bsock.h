@@ -89,7 +89,7 @@ class BareosSocket {
  protected:
   JobControlRecord* jcr_; /* JobControlRecord or NULL for error msgs */
   std::shared_ptr<std::mutex> mutex_;
-  char* who_;            /* Name of daemon to which we are talking */
+  const char* who_;      /* Name of daemon to which we are talking */
   char* host_;           /* Host name/IP */
   int port_;             /* Desired port */
   btimer_t* tid_;        /* Timer id */
@@ -224,10 +224,10 @@ class BareosSocket {
                                      TlsResource* tls_resource);
 
   void SetJcr(JobControlRecord* jcr) { jcr_ = jcr; }
-  void SetWho(char* who) { who_ = who; }
+  void SetWho(const char* who) { who_ = who; }
   void SetHost(char* host) { host_ = host; }
   void SetPort(int port) { port_ = port; }
-  char* who() { return who_; }
+  const char* who() { return who_; }
   char* host() { return host_; }
   int port() { return port_; }
   JobControlRecord* jcr() { return jcr_; }

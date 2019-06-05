@@ -57,7 +57,7 @@ void* handle_stored_connection(BareosSocket* sd)
 
   if (sscanf(sd->msg, "Hello Storage calling Start Job %127s", job_name) != 1) {
     char addr[64];
-    char* who = BnetGetPeer(sd, addr, sizeof(addr)) ? sd->who() : addr;
+    const char* who = BnetGetPeer(sd, addr, sizeof(addr)) ? sd->who() : addr;
 
     sd->msg[100] = 0;
     Dmsg2(debuglevel, "Bad Hello command from Director at %s: %s\n", sd->who(),

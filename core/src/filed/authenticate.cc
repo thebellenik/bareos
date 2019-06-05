@@ -100,7 +100,7 @@ bool AuthenticateDirector(JobControlRecord* jcr)
 
   if (dir->message_length < 25 || dir->message_length > 500) {
     char addr[64];
-    char* who = BnetGetPeer(dir, addr, sizeof(addr)) ? dir->who() : addr;
+    const char* who = BnetGetPeer(dir, addr, sizeof(addr)) ? dir->who() : addr;
     errormsg.bsprintf(_("Bad Hello command from Director at %s. Len=%d.\n"),
                       who, dir->message_length);
     AuthenticateFailed(jcr, errormsg);
@@ -110,7 +110,7 @@ bool AuthenticateDirector(JobControlRecord* jcr)
   if (sscanf(dir->msg, "Hello Director %s calling",
              dirname.check_size(dir->message_length)) != 1) {
     char addr[64];
-    char* who = BnetGetPeer(dir, addr, sizeof(addr)) ? dir->who() : addr;
+    const char* who = BnetGetPeer(dir, addr, sizeof(addr)) ? dir->who() : addr;
     dir->msg[100] = 0;
     errormsg.bsprintf(_("Bad Hello command from Director at %s: %s\n"), who,
                       dir->msg);
@@ -124,7 +124,7 @@ bool AuthenticateDirector(JobControlRecord* jcr)
 
   if (!director) {
     char addr[64];
-    char* who = BnetGetPeer(dir, addr, sizeof(addr)) ? dir->who() : addr;
+    const char* who = BnetGetPeer(dir, addr, sizeof(addr)) ? dir->who() : addr;
     errormsg.bsprintf(
         _("Connection from unknown Director %s at %s rejected.\n"),
         dirname.c_str(), who);
